@@ -2,7 +2,7 @@ unit ChromeTabs;
 
 // Version 2.3
 //
-// TChromeTabs - A Chome Tab component for Delphi 6-XE8 that includes ALL the
+// TChromeTabs - A Chome Tab component for Delphi that includes ALL the
 //               features seen in the Google Chrome tab control along with
 //               much, much more.
 //
@@ -78,15 +78,15 @@ interface
 
 uses
   {$IF CompilerVersion >= 23.0}
-  System.SysUtils,System.Classes,System.Types,System.Math,
-  Vcl.Controls,Vcl.ExtCtrls,Vcl.Forms,Vcl.GraphUtil,Vcl.ImgList,
-  Vcl.Dialogs,Vcl.Menus,
+  System.SysUtils, System.Classes, System.Types, System.Math,
+  Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.GraphUtil, Vcl.ImgList,
+  Vcl.Dialogs, Vcl.Menus,
   WinApi.Windows, WinApi.Messages,
   Vcl.Graphics,
   {$ELSE}
-  SysUtils,Classes,Math,
-  Controls,ExtCtrls,Forms,GraphUtil,ImgList,Dialogs,Menus,
-  Windows,Messages,
+  SysUtils, Classes, Math,
+  Controls, ExtCtrls, Forms, GraphUtil, ImgList, Dialogs, Menus,
+  Windows, Messages,
   Graphics,
   {$ifend}
 
@@ -516,10 +516,10 @@ type
     property OnResize;
     property TabOrder;
 
-    {$if CompilerVersion >= 18.0}
+    {$IF CompilerVersion >= 18.0}
     property OnMouseEnter;
     property OnMouseLeave;
-    {$ifend}
+    {$IFEND}
   end;
 
 implementation
@@ -654,10 +654,10 @@ procedure TCustomChromeTabs.CMMouseEnter(var Msg: TMessage);
 begin
   FCancelTabSmartResizeTimer.Enabled := FALSE;
 
-  {$if CompilerVersion >= 18.0}
+  {$IF CompilerVersion >= 18.0}
   if Assigned(OnMouseEnter) then
     OnMouseEnter(Self);
-  {$ifend}
+  {$IFEND}
 end;
 
 procedure TCustomChromeTabs.CMMouseLeave(var Msg: TMessage);
@@ -700,10 +700,10 @@ procedure TCustomChromeTabs.DoOnMouseLeave;
 begin
   //SetControlDrawStates(TRUE);
 
-  {$if CompilerVersion >= 18.0}
+  {$IF CompilerVersion >= 18.0}
   if Assigned(OnMouseLeave) then
     OnMouseLeave(Self);
-  {$ifend}
+  {$IFEND}
 end;
 
 function TCustomChromeTabs.InsertDroppedTab: TChromeTab;
@@ -4086,48 +4086,48 @@ end;
 
 procedure TCustomChromeTabs.SetDefaultOptions;
 begin
-  FOptions.Display.CloseButton.Offsets.Vertical := 6;
-  FOptions.Display.CloseButton.Offsets.Horizontal := 2;
-  FOptions.Display.CloseButton.Height := 14;
-  FOptions.Display.CloseButton.Width := 14;
+  FOptions.Display.CloseButton.Offsets.Vertical := MulDiv( 6, Screen.PixelsPerInch, 96 );
+  FOptions.Display.CloseButton.Offsets.Horizontal := MulDiv( 2, Screen.PixelsPerInch, 96 );
+  FOptions.Display.CloseButton.Height := MulDiv( 14, Screen.PixelsPerInch, 96 );
+  FOptions.Display.CloseButton.Width := MulDiv( 14, Screen.PixelsPerInch, 96 );
   FOptions.Display.CloseButton.AutoHide := True;
   FOptions.Display.CloseButton.Visibility := bvAll;
-  FOptions.Display.CloseButton.AutoHideWidth := 20;
-  FOptions.Display.CloseButton.CrossRadialOffset := 4;
-  FOptions.Display.AddButton.Offsets.Vertical := 10;
-  FOptions.Display.AddButton.Offsets.Horizontal := 2;
-  FOptions.Display.AddButton.HorizontalOffsetFloating := -3;
-  FOptions.Display.AddButton.Height := 14;
-  FOptions.Display.AddButton.Width := 31;
+  FOptions.Display.CloseButton.AutoHideWidth := MulDiv( 20, Screen.PixelsPerInch, 96 );
+  FOptions.Display.CloseButton.CrossRadialOffset := MulDiv( 4, Screen.PixelsPerInch, 96 );
+  FOptions.Display.AddButton.Offsets.Vertical := MulDiv( 10, Screen.PixelsPerInch, 96 );
+  FOptions.Display.AddButton.Offsets.Horizontal := MulDiv( 2, Screen.PixelsPerInch, 96 );
+  FOptions.Display.AddButton.HorizontalOffsetFloating := MulDiv( -3, Screen.PixelsPerInch, 96 );
+  FOptions.Display.AddButton.Height := MulDiv( 14, Screen.PixelsPerInch, 96 );
+  FOptions.Display.AddButton.Width := MulDiv( 31, Screen.PixelsPerInch, 96 );
   FOptions.Display.AddButton.ShowPlusSign := False;
   FOptions.Display.AddButton.Visibility := avRightFloating;
-  FOptions.Display.ScrollButtonLeft.Offsets.Vertical := 10;
-  FOptions.Display.ScrollButtonLeft.Offsets.Horizontal := 1;
-  FOptions.Display.ScrollButtonLeft.Height := 15;
-  FOptions.Display.ScrollButtonLeft.Width := 15;
-  FOptions.Display.ScrollButtonRight.Offsets.Vertical := 10;
-  FOptions.Display.ScrollButtonRight.Offsets.Horizontal := 1;
-  FOptions.Display.ScrollButtonRight.Height := 15;
-  FOptions.Display.ScrollButtonRight.Width := 15;
+  FOptions.Display.ScrollButtonLeft.Offsets.Vertical := MulDiv( 10, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonLeft.Offsets.Horizontal := MulDiv( 1, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonLeft.Height := MulDiv( 15, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonLeft.Width := MulDiv( 15, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonRight.Offsets.Vertical := MulDiv( 10, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonRight.Offsets.Horizontal := MulDiv( 1, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonRight.Height := MulDiv( 15, Screen.PixelsPerInch, 96 );
+  FOptions.Display.ScrollButtonRight.Width := MulDiv( 15, Screen.PixelsPerInch, 96 );
   FOptions.Display.TabModifiedGlow.Style := msRightToLeft;
-  FOptions.Display.TabModifiedGlow.VerticalOffset := -6;
-  FOptions.Display.TabModifiedGlow.Height := 30;
-  FOptions.Display.TabModifiedGlow.Width := 100;
+  FOptions.Display.TabModifiedGlow.VerticalOffset := MulDiv( -6, Screen.PixelsPerInch, 96 );
+  FOptions.Display.TabModifiedGlow.Height := MulDiv( 30, Screen.PixelsPerInch, 96 );
+  FOptions.Display.TabModifiedGlow.Width := MulDiv( 100, Screen.PixelsPerInch, 96 );
   FOptions.Display.TabModifiedGlow.AnimationPeriodMS := 4000;
   FOptions.Display.TabModifiedGlow.EaseType := ttEaseInOutQuad;
   FOptions.Display.TabModifiedGlow.AnimationUpdateMS := 50;
   FOptions.Display.Tabs.SeeThroughTabs := False;
-  FOptions.Display.Tabs.TabOverlap := 15;
-  FOptions.Display.Tabs.ContentOffsetLeft := 18;
-  FOptions.Display.Tabs.ContentOffsetRight := 16;
+  FOptions.Display.Tabs.TabOverlap := MulDiv( 15, Screen.PixelsPerInch, 96 );
+  FOptions.Display.Tabs.ContentOffsetLeft := MulDiv( 18, Screen.PixelsPerInch, 96 );
+  FOptions.Display.Tabs.ContentOffsetRight := MulDiv( 16, Screen.PixelsPerInch, 96 );
   FOptions.Display.Tabs.OffsetLeft := 0;
-  FOptions.Display.Tabs.OffsetTop := 4;
+  FOptions.Display.Tabs.OffsetTop := MulDiv( 4, Screen.PixelsPerInch, 96 );
   FOptions.Display.Tabs.OffsetRight := 0;
   FOptions.Display.Tabs.OffsetBottom := 0;
-  FOptions.Display.Tabs.MinWidth := 25;
-  FOptions.Display.Tabs.MaxWidth := 200;
-  FOptions.Display.Tabs.PinnedWidth := 39;
-  FOptions.Display.Tabs.ImageOffsetLeft := 13;
+  FOptions.Display.Tabs.MinWidth := MulDiv( 25, Screen.PixelsPerInch, 96 );
+  FOptions.Display.Tabs.MaxWidth := MulDiv( 200, Screen.PixelsPerInch, 96 );
+  FOptions.Display.Tabs.PinnedWidth := MulDiv( 39, Screen.PixelsPerInch, 96 );
+  FOptions.Display.Tabs.ImageOffsetLeft := MulDiv( 13, Screen.PixelsPerInch, 96 );
   FOptions.Display.Tabs.TextTrimType := tttFade;
   FOptions.Display.Tabs.Orientation := toTop;
   FOptions.Display.Tabs.BaseLineTabRegionOnly := False;
@@ -4141,22 +4141,22 @@ begin
   FOptions.Display.TabContainer.PaddingRight := 0;
   FOptions.Display.TabMouseGlow.Offsets.Vertical := 0;
   FOptions.Display.TabMouseGlow.Offsets.Horizontal := 0;
-  FOptions.Display.TabMouseGlow.Height := 200;
-  FOptions.Display.TabMouseGlow.Width := 200;
+  FOptions.Display.TabMouseGlow.Height := MulDiv( 200, Screen.PixelsPerInch, 96 );
+  FOptions.Display.TabMouseGlow.Width := MulDiv( 200, Screen.PixelsPerInch, 96 );
   FOptions.Display.TabMouseGlow.Visible := True;
   FOptions.DragDrop.DragType := dtBetweenContainers;
   FOptions.DragDrop.DragOutsideImageAlpha := 220;
-  FOptions.DragDrop.DragOutsideDistancePixels := 30;
-  FOptions.DragDrop.DragStartPixels := 2;
-  FOptions.DragDrop.DragControlImageResizeFactor := 0.500000000000000000;
+  FOptions.DragDrop.DragOutsideDistancePixels := MulDiv( 30, Screen.PixelsPerInch, 96 );
+  FOptions.DragDrop.DragStartPixels := MulDiv( 20, Screen.PixelsPerInch, 96 );
+  FOptions.DragDrop.DragControlImageResizeFactor := 0.5;
   FOptions.DragDrop.DragCursor := crDefault;
   FOptions.DragDrop.DragDisplay := ddTabAndControl;
-  FOptions.DragDrop.DragFormBorderWidth := 2;
+  FOptions.DragDrop.DragFormBorderWidth := MulDiv( 2, Screen.PixelsPerInch, 96 );
   FOptions.DragDrop.DragFormBorderColor := 8421504;
   FOptions.Animation.DefaultMovementAnimationTimeMS := 100;
   FOptions.Animation.DefaultStyleAnimationTimeMS := 300;
   FOptions.Animation.AnimationTimerInterval := 15;
-  FOptions.Animation.MinimumTabAnimationWidth := 40;
+  FOptions.Animation.MinimumTabAnimationWidth := MulDiv( 40, Screen.PixelsPerInch, 96 );
   FOptions.Animation.DefaultMovementEaseType := ttLinearTween;
   FOptions.Animation.DefaultStyleEaseType := ttLinearTween;
   FOptions.Animation.MovementAnimations.TabAdd.UseDefaultEaseType := True;
@@ -4182,11 +4182,11 @@ begin
   FOptions.Behaviour.IgnoreDoubleClicksWhileAnimatingMovement := True;
   FOptions.Scrolling.Enabled := True;
   FOptions.Scrolling.ScrollButtons := csbRight;
-  FOptions.Scrolling.ScrollStep := 20;
+  FOptions.Scrolling.ScrollStep := MulDiv( 20, Screen.PixelsPerInch, 96 );
   FOptions.Scrolling.ScrollRepeatDelay := 20;
   FOptions.Scrolling.AutoHideButtons := False;
   FOptions.Scrolling.DragScroll := True;
-  FOptions.Scrolling.DragScrollOffset := 50;
+  FOptions.Scrolling.DragScrollOffset := MulDiv( 50, Screen.PixelsPerInch, 96 );
   FOptions.Scrolling.MouseWheelScroll := True;
 end;
 
@@ -4201,7 +4201,7 @@ begin
     FLookAndFeel.TabsContainer.OutlineColor := 14520930;
     FLookAndFeel.TabsContainer.OutlineAlpha := 0;
     FLookAndFeel.Tabs.BaseLine.Color := 11110509;
-    FLookAndFeel.Tabs.BaseLine.Thickness := 1.000000000000000000;
+    FLookAndFeel.Tabs.BaseLine.Thickness := 1.0;
     FLookAndFeel.Tabs.BaseLine.Alpha := 255;
     FLookAndFeel.Tabs.Modified.CentreColor := clWhite;
     FLookAndFeel.Tabs.Modified.OutsideColor := clWhite;
@@ -4211,7 +4211,7 @@ begin
     FLookAndFeel.Tabs.DefaultFont.Color := clBlack;
     FLookAndFeel.Tabs.DefaultFont.Size := 9;
     FLookAndFeel.Tabs.DefaultFont.Alpha := 255;
-    FLookAndFeel.Tabs.DefaultFont.TextRendoringMode := TextRenderingHintClearTypeGridFit;
+    FLookAndFeel.Tabs.DefaultFont.TextRenderingMode := TextRenderingHintClearTypeGridFit;
     FLookAndFeel.Tabs.MouseGlow.CentreColor := clWhite;
     FLookAndFeel.Tabs.MouseGlow.OutsideColor := clWhite;
     FLookAndFeel.Tabs.MouseGlow.CentreAlpha := 120;
@@ -4220,168 +4220,168 @@ begin
     FLookAndFeel.Tabs.Active.Font.Color := clOlive;
     FLookAndFeel.Tabs.Active.Font.Size := 9;
     FLookAndFeel.Tabs.Active.Font.Alpha := 100;
-    FLookAndFeel.Tabs.Active.Font.TextRendoringMode := TextRenderingHintClearTypeGridFit;
+    FLookAndFeel.Tabs.Active.Font.TextRenderingMode := TextRenderingHintClearTypeGridFit;
     FLookAndFeel.Tabs.Active.Font.UseDefaultFont := True;
     FLookAndFeel.Tabs.Active.Style.StartColor := clWhite;
     FLookAndFeel.Tabs.Active.Style.StopColor := 16316920;
     FLookAndFeel.Tabs.Active.Style.StartAlpha := 255;
     FLookAndFeel.Tabs.Active.Style.StopAlpha := 255;
     FLookAndFeel.Tabs.Active.Style.OutlineColor := 10189918;
-    FLookAndFeel.Tabs.Active.Style.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.Tabs.Active.Style.OutlineSize := 1.0;
     FLookAndFeel.Tabs.Active.Style.OutlineAlpha := 255;
     FLookAndFeel.Tabs.NotActive.Font.Name := 'Segoe UI';
     FLookAndFeel.Tabs.NotActive.Font.Color := 4603477;
     FLookAndFeel.Tabs.NotActive.Font.Size := 9;
     FLookAndFeel.Tabs.NotActive.Font.Alpha := 215;
-    FLookAndFeel.Tabs.NotActive.Font.TextRendoringMode := TextRenderingHintClearTypeGridFit;
+    FLookAndFeel.Tabs.NotActive.Font.TextRenderingMode := TextRenderingHintClearTypeGridFit;
     FLookAndFeel.Tabs.NotActive.Font.UseDefaultFont := False;
     FLookAndFeel.Tabs.NotActive.Style.StartColor := 15194573;
     FLookAndFeel.Tabs.NotActive.Style.StopColor := 15194573;
     FLookAndFeel.Tabs.NotActive.Style.StartAlpha := 210;
     FLookAndFeel.Tabs.NotActive.Style.StopAlpha := 210;
     FLookAndFeel.Tabs.NotActive.Style.OutlineColor := 13546390;
-    FLookAndFeel.Tabs.NotActive.Style.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.Tabs.NotActive.Style.OutlineSize := 1.0;
     FLookAndFeel.Tabs.NotActive.Style.OutlineAlpha := 215;
     FLookAndFeel.Tabs.Hot.Font.Name := 'Segoe UI';
     FLookAndFeel.Tabs.Hot.Font.Color := 4210752;
     FLookAndFeel.Tabs.Hot.Font.Size := 9;
     FLookAndFeel.Tabs.Hot.Font.Alpha := 215;
-    FLookAndFeel.Tabs.Hot.Font.TextRendoringMode := TextRenderingHintClearTypeGridFit;
+    FLookAndFeel.Tabs.Hot.Font.TextRenderingMode := TextRenderingHintClearTypeGridFit;
     FLookAndFeel.Tabs.Hot.Font.UseDefaultFont := False;
     FLookAndFeel.Tabs.Hot.Style.StartColor := 15721176;
     FLookAndFeel.Tabs.Hot.Style.StopColor := 15589847;
     FLookAndFeel.Tabs.Hot.Style.StartAlpha := 255;
     FLookAndFeel.Tabs.Hot.Style.StopAlpha := 255;
     FLookAndFeel.Tabs.Hot.Style.OutlineColor := 12423799;
-    FLookAndFeel.Tabs.Hot.Style.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.Tabs.Hot.Style.OutlineSize := 1.0;
     FLookAndFeel.Tabs.Hot.Style.OutlineAlpha := 235;
     FLookAndFeel.CloseButton.Cross.Normal.Color := 6643031;
-    FLookAndFeel.CloseButton.Cross.Normal.Thickness := 1.500000000000000000;
+    FLookAndFeel.CloseButton.Cross.Normal.Thickness := 1.5;
     FLookAndFeel.CloseButton.Cross.Normal.Alpha := 255;
     FLookAndFeel.CloseButton.Cross.Down.Color := 15461369;
-    FLookAndFeel.CloseButton.Cross.Down.Thickness := 2.000000000000000000;
+    FLookAndFeel.CloseButton.Cross.Down.Thickness := 2.0;
     FLookAndFeel.CloseButton.Cross.Down.Alpha := 220;
     FLookAndFeel.CloseButton.Cross.Hot.Color := clWhite;
-    FLookAndFeel.CloseButton.Cross.Hot.Thickness := 2.000000000000000000;
+    FLookAndFeel.CloseButton.Cross.Hot.Thickness := 2.0;
     FLookAndFeel.CloseButton.Cross.Hot.Alpha := 220;
     FLookAndFeel.CloseButton.Circle.Normal.StartColor := clGradientActiveCaption;
     FLookAndFeel.CloseButton.Circle.Normal.StopColor := clNone;
     FLookAndFeel.CloseButton.Circle.Normal.StartAlpha := 0;
     FLookAndFeel.CloseButton.Circle.Normal.StopAlpha := 0;
     FLookAndFeel.CloseButton.Circle.Normal.OutlineColor := clGray;
-    FLookAndFeel.CloseButton.Circle.Normal.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.CloseButton.Circle.Normal.OutlineSize := 1.0;
     FLookAndFeel.CloseButton.Circle.Normal.OutlineAlpha := 0;
     FLookAndFeel.CloseButton.Circle.Down.StartColor := 3487169;
     FLookAndFeel.CloseButton.Circle.Down.StopColor := 3487169;
     FLookAndFeel.CloseButton.Circle.Down.StartAlpha := 255;
     FLookAndFeel.CloseButton.Circle.Down.StopAlpha := 255;
     FLookAndFeel.CloseButton.Circle.Down.OutlineColor := clGray;
-    FLookAndFeel.CloseButton.Circle.Down.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.CloseButton.Circle.Down.OutlineSize := 1.0;
     FLookAndFeel.CloseButton.Circle.Down.OutlineAlpha := 255;
     FLookAndFeel.CloseButton.Circle.Hot.StartColor := 9408475;
     FLookAndFeel.CloseButton.Circle.Hot.StopColor := 9803748;
     FLookAndFeel.CloseButton.Circle.Hot.StartAlpha := 255;
     FLookAndFeel.CloseButton.Circle.Hot.StopAlpha := 255;
     FLookAndFeel.CloseButton.Circle.Hot.OutlineColor := 6054595;
-    FLookAndFeel.CloseButton.Circle.Hot.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.CloseButton.Circle.Hot.OutlineSize := 1.0;
     FLookAndFeel.CloseButton.Circle.Hot.OutlineAlpha := 255;
     FLookAndFeel.AddButton.Button.Normal.StartColor := 14340292;
     FLookAndFeel.AddButton.Button.Normal.StopColor := 14340035;
     FLookAndFeel.AddButton.Button.Normal.StartAlpha := 255;
     FLookAndFeel.AddButton.Button.Normal.StopAlpha := 255;
     FLookAndFeel.AddButton.Button.Normal.OutlineColor := 13088421;
-    FLookAndFeel.AddButton.Button.Normal.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.Button.Normal.OutlineSize := 1.0;
     FLookAndFeel.AddButton.Button.Normal.OutlineAlpha := 255;
     FLookAndFeel.AddButton.Button.Down.StartColor := 13417645;
     FLookAndFeel.AddButton.Button.Down.StopColor := 13417644;
     FLookAndFeel.AddButton.Button.Down.StartAlpha := 255;
     FLookAndFeel.AddButton.Button.Down.StopAlpha := 255;
     FLookAndFeel.AddButton.Button.Down.OutlineColor := 10852748;
-    FLookAndFeel.AddButton.Button.Down.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.Button.Down.OutlineSize := 1.0;
     FLookAndFeel.AddButton.Button.Down.OutlineAlpha := 255;
     FLookAndFeel.AddButton.Button.Hot.StartColor := 15524314;
     FLookAndFeel.AddButton.Button.Hot.StopColor := 15524314;
     FLookAndFeel.AddButton.Button.Hot.StartAlpha := 255;
     FLookAndFeel.AddButton.Button.Hot.StopAlpha := 255;
     FLookAndFeel.AddButton.Button.Hot.OutlineColor := 14927787;
-    FLookAndFeel.AddButton.Button.Hot.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.Button.Hot.OutlineSize := 1.0;
     FLookAndFeel.AddButton.Button.Hot.OutlineAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Normal.StartColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Normal.StopColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Normal.StartAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Normal.StopAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Normal.OutlineColor := clGray;
-    FLookAndFeel.AddButton.PlusSign.Normal.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.PlusSign.Normal.OutlineSize := 1.0;
     FLookAndFeel.AddButton.PlusSign.Normal.OutlineAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Down.StartColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Down.StopColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Down.StartAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Down.StopAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Down.OutlineColor := clGray;
-    FLookAndFeel.AddButton.PlusSign.Down.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.PlusSign.Down.OutlineSize := 1.0;
     FLookAndFeel.AddButton.PlusSign.Down.OutlineAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Hot.StartColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Hot.StopColor := clWhite;
     FLookAndFeel.AddButton.PlusSign.Hot.StartAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Hot.StopAlpha := 255;
     FLookAndFeel.AddButton.PlusSign.Hot.OutlineColor := clGray;
-    FLookAndFeel.AddButton.PlusSign.Hot.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.AddButton.PlusSign.Hot.OutlineSize := 1.0;
     FLookAndFeel.AddButton.PlusSign.Hot.OutlineAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Normal.StartColor := 14735310;
     FLookAndFeel.ScrollButtons.Button.Normal.StopColor := 14274499;
     FLookAndFeel.ScrollButtons.Button.Normal.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Normal.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Normal.OutlineColor := 11507842;
-    FLookAndFeel.ScrollButtons.Button.Normal.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Button.Normal.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Button.Normal.OutlineAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Down.StartColor := 13417645;
     FLookAndFeel.ScrollButtons.Button.Down.StopColor := 13417644;
     FLookAndFeel.ScrollButtons.Button.Down.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Down.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Down.OutlineColor := 10852748;
-    FLookAndFeel.ScrollButtons.Button.Down.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Button.Down.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Button.Down.OutlineAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Hot.StartColor := 15524314;
     FLookAndFeel.ScrollButtons.Button.Hot.StopColor := 15524313;
     FLookAndFeel.ScrollButtons.Button.Hot.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Hot.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Hot.OutlineColor := 14927788;
-    FLookAndFeel.ScrollButtons.Button.Hot.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Button.Hot.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Button.Hot.OutlineAlpha := 255;
     FLookAndFeel.ScrollButtons.Button.Disabled.StartColor := 14340036;
     FLookAndFeel.ScrollButtons.Button.Disabled.StopColor := 14274499;
     FLookAndFeel.ScrollButtons.Button.Disabled.StartAlpha := 150;
     FLookAndFeel.ScrollButtons.Button.Disabled.StopAlpha := 150;
     FLookAndFeel.ScrollButtons.Button.Disabled.OutlineColor := 11113341;
-    FLookAndFeel.ScrollButtons.Button.Disabled.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Button.Disabled.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Button.Disabled.OutlineAlpha := 100;
     FLookAndFeel.ScrollButtons.Arrow.Normal.StartColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Normal.StopColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Normal.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Normal.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Normal.OutlineColor := clGray;
-    FLookAndFeel.ScrollButtons.Arrow.Normal.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Arrow.Normal.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Arrow.Normal.OutlineAlpha := 200;
     FLookAndFeel.ScrollButtons.Arrow.Down.StartColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Down.StopColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Down.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Down.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Down.OutlineColor := clGray;
-    FLookAndFeel.ScrollButtons.Arrow.Down.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Arrow.Down.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Arrow.Down.OutlineAlpha := 200;
     FLookAndFeel.ScrollButtons.Arrow.Hot.StartColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Hot.StopColor := clWhite;
     FLookAndFeel.ScrollButtons.Arrow.Hot.StartAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Hot.StopAlpha := 255;
     FLookAndFeel.ScrollButtons.Arrow.Hot.OutlineColor := clGray;
-    FLookAndFeel.ScrollButtons.Arrow.Hot.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Arrow.Hot.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Arrow.Hot.OutlineAlpha := 200;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.StartColor := clSilver;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.StopColor := clSilver;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.StartAlpha := 150;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.StopAlpha := 150;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.OutlineColor := clGray;
-    FLookAndFeel.ScrollButtons.Arrow.Disabled.OutlineSize := 1.000000000000000000;
+    FLookAndFeel.ScrollButtons.Arrow.Disabled.OutlineSize := 1.0;
     FLookAndFeel.ScrollButtons.Arrow.Disabled.OutlineAlpha := 200;
   finally
     EndUpdate;
